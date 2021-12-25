@@ -10,6 +10,7 @@ const App = () => {
     userName="Sakif"
     userSecret="123123"
     renderChatFeed={(chatAppProps)=><ChatFeed {...chatAppProps}/>}
+    // This props(//data) are coming from chatengine.io site
 
   />
   )
