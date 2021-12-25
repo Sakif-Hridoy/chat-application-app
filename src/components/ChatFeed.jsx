@@ -10,7 +10,7 @@ const ChatFeed = (props)=>{
     const chat = chats && chats[activeChat];
 const renderChatMessages = ()=>{
     const keys = Object.keys(messages);
-    console.log(keys);
+    // console.log(keys);
     
 }
 renderChatMessages();
