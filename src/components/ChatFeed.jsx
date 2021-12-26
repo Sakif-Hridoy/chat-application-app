@@ -12,6 +12,8 @@ const renderChatMessages = ()=>{
     const keys = Object.keys(messages);
     // console.log(keys);
     return keys.map((key,index)=>{
+        // A Users Message Passing steps in this app
+        // Messages are extracting from here,the variable message and it is passing as props to the MyMessage,TheirMessage component
         const message = messages[key];
         const lastMessageKey = index === 0 ? null : keys[index-1];
         const isMyMessage = userName === message.sender.username;
@@ -20,21 +22,33 @@ const renderChatMessages = ()=>{
                 <div className="messgae-block">
                     {
                         isMyMessage
-                        ? <MyMessage/>
-                        :<TheirMessage/>
+                        ? <MyMessage message={message}/>
+                        :<TheirMessage message={message} lastMessage={messages[lastMessageKey]}/>
                     }
                 </div>
+                <div className="read-receipts" style={{marginRight: isMyMessage? '18px': '0px',marginLeft: isMyMessage ? '0px' : '60px',}}>
+
+                </div>
             </div>
-        )
+        );
     })
     
 }
-renderChatMessages();
 console.log(chat,userName,messages);
 
 return(
-    <div>
-        ChatFeed
+    <div className="chat-feed">
+        <div className="chat-title-container">
+            <div className="chat-title">{chat.title}</div>
+            <div className="chat-subtitle">
+                {chat.people.map((person)=>`${person.person.username}`)}
+            </div>
+        </div>
+        {renderChatMessages()}
+        <div style={{height:'100px'}}/>  
+        <div className="message-form-container">
+            <MessageForm {...props} chatId={activeChat} />
+        </div>
     </div>
 );
 
